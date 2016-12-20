@@ -24,4 +24,9 @@ print("unique:", unique)
 
 max_unique = max(unique)
 tot_with_max = max_unique + len(not_unique)
-print(tot_with_max)
+start = max_unique + 1
+
+sum_not_unique = (tot_with_max * (tot_with_max + 1)) - (start * (start + 1))
+sum_not_unique *= 0.5
+
+print(sum(unique) + sum_not_unique)
