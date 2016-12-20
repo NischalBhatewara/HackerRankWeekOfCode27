@@ -4,13 +4,19 @@ n, p = input().strip().split(' ')
 n, p = [int(n), int(p)]
 a = [int(a_temp) for a_temp in input().strip().split(' ')]
 clusters = [math.ceil(ai / p) for ai in a]
-clusters.sort()
+# # clusters.sort()
+#
+# tot_buttons = 0
+# button_array = []
+# for cluster_size in clusters:
+#     if cluster_size in button_array:
+#         cluster_size = max(button_array) + 1
+#     button_array.append(cluster_size)
+#     tot_buttons += cluster_size
 
-tot_buttons = 0
-button_array = []
-for cluster_size in clusters:
-    if cluster_size in button_array:
-        cluster_size = max(button_array) + 1
-    button_array.append(cluster_size)
+# print(tot_buttons)
 
-print(sum(button_array))
+unique = set(clusters)
+not_unique = set([x for x in clusters if clusters.count(x) > 1])
+
+print(sum(unique))
