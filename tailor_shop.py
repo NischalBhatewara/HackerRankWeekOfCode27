@@ -21,3 +21,7 @@ not_unique = set(([x for x in clusters if clusters.count(x) > 1]))
 
 print("not unique:", not_unique)
 print("unique:", unique)
+
+max_unique = max(unique)
+tot_with_max = max_unique + len(not_unique)
+print(tot_with_max)
