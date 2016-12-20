@@ -19,14 +19,10 @@ clusters = [math.ceil(ai / p) for ai in a]
 unique = set(clusters)
 not_unique = set(([x for x in clusters if clusters.count(x) > 1]))
 
-print("not unique:", not_unique)
-print("unique:", unique)
-
-max_unique = max(unique)
-tot_with_max = max_unique + len(not_unique)
-start = max_unique + 1
+start = max(unique) + 1
+tot_with_max = start + len(not_unique)
 
 sum_not_unique = (tot_with_max * (tot_with_max + 1)) - (start * (start + 1))
 sum_not_unique *= 0.5
 
-print(sum(unique) + sum_not_unique)
+print(int(sum(unique) + sum_not_unique - 1))
