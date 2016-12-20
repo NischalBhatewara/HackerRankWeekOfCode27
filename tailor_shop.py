@@ -17,6 +17,7 @@ clusters = [math.ceil(ai / p) for ai in a]
 # print(tot_buttons)
 
 unique = set(clusters)
-not_unique = set([x for x in clusters if clusters.count(x) > 1])
+not_unique = set(([x for x in clusters if clusters.count(x) > 1]))
 
-print(sum(unique))
+print("not unique:", not_unique)
+print("unique:", unique)
