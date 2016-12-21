@@ -43,9 +43,12 @@ def store_differences(matrix):
         rotation_diff[count + 1] = diff_counter
 
 
-n, q = input().strip().split(' ')
-n, q = [int(n), int(q)]
-store_differences(get_hackonacci_matrix(n))
-for counter in range(q):
-    angle = int(input().strip())
-    print(rotation_diff[((angle / 90) % 4)])
+# n, q = input().strip().split(' ')
+# n, q = [int(n), int(q)]
+# store_differences(get_hackonacci_matrix(10))
+# for counter in range(q):
+#     angle = int(input().strip())
+#     print(rotation_diff[((angle / 90) % 4)])
+
+for i in range(1, 20):
+    print(i, hackonacci(i))
