@@ -4,6 +4,7 @@ for a0 in range(q):
     angle = int(input().strip())
 
 hack_numbers = {1: 1, 2: 2, 3: 3}
+rotation_diff = {}
 
 
 def hackonacci(n):
@@ -26,4 +27,10 @@ def get_hackonacci_matrix(size):
     return matrix
 
 
-print(get_hackonacci_matrix(n))
+def store_differences(matrix):
+    temp_matrix = matrix
+    for i in range(1, 4):
+        print(i)
+
+
+store_differences(1)
