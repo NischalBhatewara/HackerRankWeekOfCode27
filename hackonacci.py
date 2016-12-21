@@ -20,7 +20,8 @@ def get_hackonacci_matrix(n):
     for i in range(1, n + 1):
         row = []
         for j in range(1, n + 1):
-            row.append(hackonacci((i * j) ** 2))
+            hn = hackonacci((i * j) ** 2)
+            row.append('X' if hn % 2 == 0 else 'Y')
         matrix.append(row)
     return matrix
 
