@@ -27,23 +27,15 @@ def get_hackonacci_matrix(size):
     return matrix
 
 
-# def store_differences(matrix):
-#     temp_matrix = []
-#     for i in range(1, 4):
-#         for i in range()
+def store_differences(matrix):
+    size = len(matrix)
+    temp_matrix = []
+    for j in range(0, size):
+        temp_row = []
+        for i in range(size - 1, -1, -1):
+            temp_row.append(matrix[i][j])
+        temp_matrix.append(temp_row)
+    print(temp_matrix)
 
-mat = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-for i in range(0, 3):
-    for j in range(0, 3):
-        print(mat[i][j], end="\t")
-    print()
-print("\n")
-for j in range(0, 3):
-    for i in range(2, -1, -1):
-        print(i, j, end="\t")
-    print()
-print()
-for j in range(0, 3):
-    for i in range(2, -1, -1):
-        print(mat[i][j], end="\t")
-    print()
+
+store_differences(get_hackonacci_matrix(4))
