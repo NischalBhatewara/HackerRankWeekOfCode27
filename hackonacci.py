@@ -29,13 +29,24 @@ def get_hackonacci_matrix(size):
 
 def store_differences(matrix):
     size = len(matrix)
-    temp_matrix = []
-    for j in range(0, size):
-        temp_row = []
-        for i in range(size - 1, -1, -1):
-            temp_row.append(matrix[i][j])
-        temp_matrix.append(temp_row)
-    print(temp_matrix)
+    rotate_matrix = matrix
+    for count in range(3):
+        # rotate
+        temp_matrix = []
+        for j in range(0, size):
+            temp_row = []
+            for i in range(size - 1, -1, -1):
+                temp_row.append(rotate_matrix[i][j])
+            temp_matrix.append(temp_row)
+        rotate_matrix = temp_matrix
+        # compare
+        diff_counter = 0
+        for i in range(size):
+            for j in range(size):
+                if rotate_matrix[i][j] != matrix[i][j]:
+                    diff_counter += 1
+        rotation_diff[count + 1] = diff_counter
+    print(rotation_diff)
 
 
 store_differences(get_hackonacci_matrix(4))
