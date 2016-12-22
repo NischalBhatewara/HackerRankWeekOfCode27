@@ -1,15 +1,5 @@
-hack_numbers = {1: 1, 2: 2, 3: 3}
 hack_pattern = {1: 'Y', 2: 'X', 3: 'Y', 4: 'X', 5: 'X', 6: 'Y', 0: 'Y'}
 rotation_diff = {0: 0}
-
-
-def hackonacci(n):
-    if n in hack_numbers:
-        return hack_numbers[n]
-    else:
-        hn = hackonacci(n - 1) + 2 * hackonacci(n - 2) + 3 * hackonacci(n - 3)
-        hack_numbers[n] = hn
-        return hn
 
 
 def get_hackonacci_matrix(size):
@@ -17,7 +7,6 @@ def get_hackonacci_matrix(size):
     for i in range(1, size + 1):
         row = []
         for j in range(1, size + 1):
-            # row.append('X' if hackonacci((i * j) ** 2) % 2 == 0 else 'Y')
             row.append(hack_pattern[(i * j) ** 2 % 7])  # using the found pattern
         matrix.append(row)
     return matrix
