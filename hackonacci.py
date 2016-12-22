@@ -17,8 +17,8 @@ def get_hackonacci_matrix(size):
     for i in range(1, size + 1):
         row = []
         for j in range(1, size + 1):
-            hn = hackonacci((i * j) ** 2)
-            row.append('X' if hn % 2 == 0 else 'Y')
+            # row.append('X' if hackonacci((i * j) ** 2) % 2 == 0 else 'Y')
+            row.append(hack_pattern[(i * j) ** 2 % 7])  # using the found pattern
         matrix.append(row)
     return matrix
 
@@ -51,7 +51,4 @@ def store_differences(matrix):
 #     angle = int(input().strip())
 #     print(rotation_diff[((angle / 90) % 4)])
 
-for i in range(1, 2000):  # pattern -> o e o e e o o and repeat!
-    h = 'X' if hackonacci(i) % 2 == 0 else 'Y'
-    if h != hack_pattern[i % 7]:
-        print(h, i, hackonacci(i), hack_pattern[i % 7])
+print(get_hackonacci_matrix(4))
