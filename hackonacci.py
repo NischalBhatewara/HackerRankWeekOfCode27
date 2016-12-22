@@ -50,5 +50,5 @@ def store_differences(matrix):
 #     angle = int(input().strip())
 #     print(rotation_diff[((angle / 90) % 4)])
 
-for i in range(1, 20):
-    print(i, hackonacci(i))
+for i in range(1, 20):  # pattern -> o e o e e o o and repeat!
+    print(i, hackonacci(i) % 2)
