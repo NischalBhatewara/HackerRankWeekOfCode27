@@ -1,4 +1,5 @@
 hack_numbers = {1: 1, 2: 2, 3: 3}
+hack_pattern = {1: 'Y', 2: 'X', 3: 'Y', 4: 'X', 5: 'X', 6: 'Y', 0: 'Y'}
 rotation_diff = {0: 0}
 
 
@@ -51,4 +52,4 @@ def store_differences(matrix):
 #     print(rotation_diff[((angle / 90) % 4)])
 
 for i in range(1, 20):  # pattern -> o e o e e o o and repeat!
-    print(i, hackonacci(i) % 2)
+    print(i, hackonacci(i) % 2, hack_pattern[i % 7])
