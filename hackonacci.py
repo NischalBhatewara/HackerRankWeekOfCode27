@@ -1,7 +1,8 @@
-hack_pattern = {1: 'Y', 2: 'X', 3: 'Y', 4: 'X', 5: 'X', 6: 'Y', 0: 'Y'}
-rotation_diff = {0: 0}
+hack_pattern = {1: 'Y', 2: 'X', 3: 'Y', 4: 'X', 5: 'X', 6: 'Y', 0: 'Y'}  # pattern in hackonacci numbers
+rotation_diff = {0: 0}  # stores differences
 
 
+# returns the hackonacci matrix for a given size
 def get_hackonacci_matrix(size):
     matrix = []
     for i in range(1, size + 1):
@@ -12,6 +13,7 @@ def get_hackonacci_matrix(size):
     return matrix
 
 
+# calculates differences in 90deg turns
 def store_differences(matrix):
     size = len(matrix)
     rotate_matrix = matrix
@@ -30,6 +32,7 @@ def store_differences(matrix):
             for j in range(size):
                 if rotate_matrix[i][j] != matrix[i][j]:
                     diff_counter += 1
+        # rotate the rotated matrix 90deg to get new rotation matrix
         rotation_diff[count + 1] = diff_counter
 
 
@@ -38,4 +41,5 @@ n, q = [int(n), int(q)]
 store_differences(get_hackonacci_matrix(n))
 for counter in range(q):
     angle = int(input().strip())
+    # the magic
     print(rotation_diff[((angle / 90) % 4)])
