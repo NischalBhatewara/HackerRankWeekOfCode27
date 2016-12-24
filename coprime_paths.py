@@ -6,8 +6,6 @@
 n, q = input().strip().split(' ')
 n, q = [int(n), int(q)]
 
-nodes_seen = []
-nodes_parent = []
 nodes = [int(nodes_temp) for nodes_temp in input().strip().split(' ')]
 edge_matrix = [[-1] * n for i in range(n)]
 
@@ -22,9 +20,14 @@ for edges_i in range(n - 1):
 
 def get_path(start, end):
     # init
+    nodes_seen = [0] * n
+    nodes_parent = [-1] * n
     queue = [start]
     nodes_seen[start] = 1
     flag = True
+
+    if start == end:
+        return [start + 1]
 
     # BSF algorithm
     while flag and len(queue) != 0:
@@ -57,9 +60,6 @@ def gcd(a, b):
 for a0 in range(q):
     u, v = input().strip().split(' ')
     u, v = [int(u), int(v)]
-
-    nodes_seen = [0] * n
-    nodes_parent = [-1] * n
 
     print("\nFor", u, v)
     path_nodes = get_path(u - 1, v - 1)
