@@ -29,12 +29,27 @@ def get_path(start, end):
     while flag:
         cur_node = queue.pop(0)
         print(cur_node)
-        print([edge_matrix[cur_node - 1][i] for i in range(n)])
+        # print([edge_matrix[cur_node - 1][i] for i in range(n)])
+        for i in range(n):
+            if edge_matrix[cur_node][i] == 1 and nodes_seen[i] != 1:
+                nodes_seen[i] = 1
+                queue.append(i)
+                nodes_parent[i] = cur_node
+        if cur_node == end:
+            flag = False
 
+    path = []
+    i = end
+    while nodes_parent[i] != -1:
+        path.append([nodes_parent[i], i])
+        i = nodes_parent[i]
+    print(path[::-1])
     return
 
 
 for a0 in range(q):
     u, v = input().strip().split(' ')
     u, v = [int(u), int(v)]
-    get_path(u, v)
+    get_path(u - 1, v - 1)
+    print(nodes_parent)
+    break
