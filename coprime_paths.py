@@ -57,34 +57,46 @@ def gcd(a, b):
 
 
 # cache all answers and print later
-for u in range(len(nodes)):
-    for v in range(u + 1, len(nodes)):
-        print(nodes[u], nodes[v])
+# for u in range(len(nodes)):
+#     for v in range(u + 1, len(nodes)):
+#         node_u = nodes[u]
+#         node_v = nodes[v]
+#         path_nodes = get_path(node_u - 1, node_v - 1)
+#         coprime_count = 0
+#         for i in range(len(path_nodes)):
+#             for j in range(i + 1, len(path_nodes)):
+#                 # get gcd
+#                 a = nodes[path_nodes[i] - 1]
+#                 b = nodes[path_nodes[j] - 1]
+#                 if gcd(a, b) == 1:
+#                     coprime_count += 1
+#
+#         coprime_paths[str(node_u) + str(node_v)] = coprime_count
 
-# for a0 in range(q):
-#     u, v = input().strip().split(' ')
-#     u, v = [int(u), int(v)]
-#
-#     if u == v:
-#         print("0")
-#         continue
-#
-#     if (str(v) + str(u)) in coprime_paths:
-#         print(coprime_paths[str(v) + str(u)])
-#         continue
-#     if (str(u) + str(v)) in coprime_paths:
-#         print(coprime_paths[str(u) + str(v)])
-#         continue
-#
-#     path_nodes = get_path(u - 1, v - 1)
-#     coprime_count = 0
-#     for i in range(len(path_nodes)):
-#         for j in range(i + 1, len(path_nodes)):
-#             # get gcd
-#             a = nodes[path_nodes[i] - 1]
-#             b = nodes[path_nodes[j] - 1]
-#             if gcd(a, b) == 1:
-#                 coprime_count += 1
-#     coprime_paths[str(u) + str(v)] = coprime_count
-#
-#     print(coprime_count)
+for a0 in range(q):
+    u, v = input().strip().split(' ')
+    u, v = [int(u), int(v)]
+
+    if u == v:
+        print("0")
+        continue
+
+    if (str(v) + str(u)) in coprime_paths:
+        print(coprime_paths[str(v) + str(u)])
+        continue
+    if (str(u) + str(v)) in coprime_paths:
+        print(coprime_paths[str(u) + str(v)])
+        continue
+
+    path_nodes = get_path(u - 1, v - 1)
+    coprime_count = 0
+    for i in range(len(path_nodes)):
+        for j in range(i + 1, len(path_nodes)):
+            # get gcd
+            a = nodes[path_nodes[i] - 1]
+            b = nodes[path_nodes[j] - 1]
+            if gcd(a, b) == 1:
+                coprime_count += 1
+    coprime_paths[str(u) + str(v)] = coprime_count
+
+    print(coprime_count)
