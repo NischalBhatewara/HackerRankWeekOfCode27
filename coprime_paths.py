@@ -13,8 +13,6 @@ for edges_i in range(n - 1):
     edges_t = [int(edges_temp) for edges_temp in input().strip().split(' ')]
     # adding vales to edge matrix
     edge_matrix[edges_t[0] - 1][edges_t[1] - 1] = 1
-    edge_matrix[edges_t[0] - 1][edges_t[0] - 1] = 0
-    edge_matrix[edges_t[1] - 1][edges_t[1] - 1] = 0
     edge_matrix[edges_t[1] - 1][edges_t[0] - 1] = 1
 
 
