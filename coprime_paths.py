@@ -61,14 +61,14 @@ for a0 in range(q):
     u, v = input().strip().split(' ')
     u, v = [int(u), int(v)]
 
-    print("\nFor", u, v)
     path_nodes = get_path(u - 1, v - 1)
-    print(path_nodes)
     coprime_count = 0
     for i in range(len(path_nodes)):
         for j in range(i + 1, len(path_nodes)):
             # get gcd
-            if gcd(path_nodes[i], path_nodes[j]) == 1:
+            a = nodes[path_nodes[i] - 1]
+            b = nodes[path_nodes[j] - 1]
+            if gcd(a, b) == 1:
                 coprime_count += 1
 
     print(coprime_count)
