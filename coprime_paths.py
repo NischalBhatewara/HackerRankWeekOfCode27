@@ -2,6 +2,7 @@
 #       2. for each edge btw u, v:
 #           if gcd(u, v) == 1:
 #               coprime_edge += 1
+
 n, q = input().strip().split(' ')
 n, q = [int(n), int(q)]
 
@@ -41,15 +42,15 @@ def get_path(start, end):
     path = []
     i = end
     while nodes_parent[i] != -1:
-        path.append([nodes_parent[i], i])
+        path.append([nodes_parent[i] + 1, i + 1])
         i = nodes_parent[i]
-    print(path[::-1])
-    return
+
+    return path
 
 
 for a0 in range(q):
     u, v = input().strip().split(' ')
     u, v = [int(u), int(v)]
-    get_path(u - 1, v - 1)
-    print(nodes_parent)
+    shortest = get_path(u - 1, v - 1)
+
     break
