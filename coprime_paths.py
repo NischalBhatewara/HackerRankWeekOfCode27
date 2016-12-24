@@ -29,8 +29,6 @@ def get_path(start, end):
     # BSF algorithm
     while flag:
         cur_node = queue.pop(0)
-        print(cur_node)
-        # print([edge_matrix[cur_node - 1][i] for i in range(n)])
         for i in range(n):
             if edge_matrix[cur_node][i] == 1 and nodes_seen[i] != 1:
                 nodes_seen[i] = 1
@@ -39,18 +37,23 @@ def get_path(start, end):
         if cur_node == end:
             flag = False
 
+    # don't need path, only need nodes in the path
     path = []
     i = end
-    while nodes_parent[i] != -1:
-        path.append([nodes_parent[i] + 1, i + 1])
+    while i != -1:
+        path.append(i + 1)
         i = nodes_parent[i]
 
-    return path
+    return path[::-1]
 
 
 for a0 in range(q):
     u, v = input().strip().split(' ')
     u, v = [int(u), int(v)]
     shortest = get_path(u - 1, v - 1)
-
+    print(shortest)
+    for i in range(len(shortest)):
+        for j in range(i + 1, len(shortest)):
+            # get gcd
+            print(shortest[i], shortest[j])
     break
