@@ -6,6 +6,8 @@ for edges_i in range(n - 1):
     edges_t = [int(edges_temp) for edges_temp in input().strip().split(' ')]
     edges.append(edges_t)
 for a0 in range(q):
-    u = int(input().strip())
-    v = int(input().strip())
+    u, v = input().strip().split(' ')
+    u, v = [int(u), int(v)]
     # your code goes here
+
+print("done")
