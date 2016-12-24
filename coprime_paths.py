@@ -6,8 +6,8 @@
 n, q = input().strip().split(' ')
 n, q = [int(n), int(q)]
 
-nodes_seen = [0] * n
-nodes_parent = [-1] * n
+nodes_seen = []
+nodes_parent = []
 nodes = [int(nodes_temp) for nodes_temp in input().strip().split(' ')]
 edge_matrix = [[-1] * n for i in range(n)]
 
@@ -27,7 +27,7 @@ def get_path(start, end):
     flag = True
 
     # BSF algorithm
-    while flag:
+    while flag and len(queue) != 0:
         cur_node = queue.pop(0)
         for i in range(n):
             if edge_matrix[cur_node][i] == 1 and nodes_seen[i] != 1:
@@ -47,13 +47,28 @@ def get_path(start, end):
     return path[::-1]
 
 
+def gcd(a, b):
+    if a == 0:
+        return b
+    else:
+        return gcd(b % a, a)
+
+
 for a0 in range(q):
     u, v = input().strip().split(' ')
     u, v = [int(u), int(v)]
-    shortest = get_path(u - 1, v - 1)
-    print(shortest)
-    for i in range(len(shortest)):
-        for j in range(i + 1, len(shortest)):
+
+    nodes_seen = [0] * n
+    nodes_parent = [-1] * n
+
+    print("\nFor", u, v)
+    path_nodes = get_path(u - 1, v - 1)
+    print(path_nodes)
+    coprime_count = 0
+    for i in range(len(path_nodes)):
+        for j in range(i + 1, len(path_nodes)):
             # get gcd
-            print(shortest[i], shortest[j])
-    break
+            if gcd(path_nodes[i], path_nodes[j]) == 1:
+                coprime_count += 1
+
+    print(coprime_count)
