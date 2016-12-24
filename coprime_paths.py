@@ -8,6 +8,7 @@ n, q = [int(n), int(q)]
 
 nodes = [int(nodes_temp) for nodes_temp in input().strip().split(' ')]
 edge_matrix = [[-1] * n for i in range(n)]
+coprime_paths = {}
 
 for edges_i in range(n - 1):
     edges_t = [int(edges_temp) for edges_temp in input().strip().split(' ')]
@@ -59,6 +60,17 @@ for a0 in range(q):
     u, v = input().strip().split(' ')
     u, v = [int(u), int(v)]
 
+    if u == v:
+        print("0")
+        continue
+
+    if (str(v) + str(u)) in coprime_paths:
+        print(coprime_paths[str(v) + str(u)])
+        continue
+    if (str(u) + str(v)) in coprime_paths:
+        print(coprime_paths[str(u) + str(v)])
+        continue
+
     path_nodes = get_path(u - 1, v - 1)
     coprime_count = 0
     for i in range(len(path_nodes)):
@@ -68,5 +80,6 @@ for a0 in range(q):
             b = nodes[path_nodes[j] - 1]
             if gcd(a, b) == 1:
                 coprime_count += 1
+    coprime_paths[str(u) + str(v)] = coprime_count
 
     print(coprime_count)
