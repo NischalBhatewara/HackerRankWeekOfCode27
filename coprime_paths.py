@@ -10,14 +10,10 @@ n, q = [int(n), int(q)]
 
 nodes = [int(nodes_temp) for nodes_temp in input().strip().split(' ')]
 edge_dict = {}
-# edge_matrix = [[-1] * n for i in range(n)]  # think this is causing problem
 coprime_paths = {}
 
 for edges_i in range(n - 1):
     edges_t = [int(edges_temp) for edges_temp in input().strip().split(' ')]
-    # adding vales to edge matrix
-    # edge_matrix[edges_t[0] - 1][edges_t[1] - 1] = 1
-    # edge_matrix[edges_t[1] - 1][edges_t[0] - 1] = 1
     # add to list
     u = edges_t[0] - 1
     v = edges_t[1] - 1
@@ -42,11 +38,6 @@ def get_path(start, end):
     # BSF algorithm
     while flag and len(queue) != 0:
         cur_node = queue.pop(0)
-        # for i in range(n):
-        #     if edge_matrix[cur_node][i] == 1 and nodes_seen[i] != 1:
-        #         nodes_seen[i] = 1
-        #         queue.append(i)
-        #         nodes_parent[i] = cur_node
         neighbours = edge_dict[cur_node]
         for neighbour in neighbours:
             if nodes_seen[neighbour] != 1:
@@ -63,7 +54,7 @@ def get_path(start, end):
         path.append(i + 1)
         i = nodes_parent[i]
 
-    return path[::-1]
+    return path
 
 
 def gcd(a, b):
