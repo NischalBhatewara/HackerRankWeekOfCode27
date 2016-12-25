@@ -28,28 +28,55 @@ def get_path(start, end):
     # init
     nodes_seen = [0] * n
     nodes_parent = [-1] * n
-    queue = [start]
+    queue_start = [start]
+    queue_end = [end]
     nodes_seen[start] = 1
     flag = True
+    connector = -1
+    common = -1
 
     if start == end:
         return [start + 1]
 
     # BSF algorithm
-    while flag and len(queue) != 0:
-        cur_node = queue.pop(0)
-        neighbours = edge_dict[cur_node]
-        for neighbour in neighbours:
+    while flag and len(queue_start) != 0 and len(queue_end) != 0:
+        cur_node_start = queue_start.pop(0)
+        cur_node_end = queue_end.pop(0)
+        neighbours_start = edge_dict[cur_node_start]
+        neighbours_end = edge_dict[cur_node_end]
+        for ne in neighbours_end:
+            if ne in neighbours_start:
+                common = ne
+                nodes_parent[ne] = cur_node_start
+                connector = cur_node_end
+                flag = False
+        if not flag:
+            continue
+        for neighbour in (neighbours_start + neighbours_end):
             if nodes_seen[neighbour] != 1:
                 nodes_seen[neighbour] = 1
-                queue.append(neighbour)
-                nodes_parent[neighbour] = cur_node
-        if cur_node == end:
+                if neighbour in neighbours_start:
+                    queue_start.append(neighbour)
+                    nodes_parent[neighbour] = cur_node_start
+                else:
+                    queue_end.append(neighbour)
+                    nodes_parent[neighbour] = cur_node_end
+        if cur_node_start == end:
             flag = False
 
     # don't need path, only need nodes in the path
+    # path = []
+    # i = end
+    # while i != -1:
+    #     path.append(i + 1)
+    #     i = nodes_parent[i]
+
     path = []
-    i = end
+    i = common
+    while i != -1:
+        path.append(i + 1)
+        i = nodes_parent[i]
+    i = connector
     while i != -1:
         path.append(i + 1)
         i = nodes_parent[i]
