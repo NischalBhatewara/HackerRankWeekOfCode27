@@ -32,8 +32,8 @@ def get_path(start, end):
     queue_end = [end]
     nodes_seen[start] = 1
     flag = True
-    connector = -1
     common = -1
+    connector = -1
 
     if start == end:
         return [start + 1]
@@ -45,7 +45,7 @@ def get_path(start, end):
         neighbours_start = edge_dict[cur_node_start]
         neighbours_end = edge_dict[cur_node_end]
         for ne in neighbours_end:
-            if ne in neighbours_start:
+            if ne in neighbours_start or ne == cur_node_start:
                 common = ne
                 nodes_parent[ne] = cur_node_start
                 connector = cur_node_end
