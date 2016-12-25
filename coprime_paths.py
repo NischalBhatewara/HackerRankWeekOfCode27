@@ -1,3 +1,5 @@
+# current score: 35.56 on 80
+
 # algo: 1. do BFS and find shortest path
 #       2. for each edge btw u, v:
 #           if gcd(u, v) == 1:
