@@ -25,8 +25,6 @@ for edges_i in range(n - 1):
         else:
             edge_dict[x] = [y]
 
-print(edge_dict)
-
 
 def get_path(start, end):
     # init
@@ -40,15 +38,21 @@ def get_path(start, end):
         return [start + 1]
 
     # BSF algorithm
-    # while flag and len(queue) != 0:
-    #     cur_node = queue.pop(0)
-    #     for i in range(n):
-    #         if edge_matrix[cur_node][i] == 1 and nodes_seen[i] != 1:
-    #             nodes_seen[i] = 1
-    #             queue.append(i)
-    #             nodes_parent[i] = cur_node
-    #     if cur_node == end:
-    #         flag = False
+    while flag and len(queue) != 0:
+        cur_node = queue.pop(0)
+        # for i in range(n):
+        #     if edge_matrix[cur_node][i] == 1 and nodes_seen[i] != 1:
+        #         nodes_seen[i] = 1
+        #         queue.append(i)
+        #         nodes_parent[i] = cur_node
+        neighbours = edge_dict[cur_node]
+        for neighbour in neighbours:
+            if nodes_seen[neighbour] != 1:
+                nodes_seen[neighbour] = 1
+                queue.append(neighbour)
+                nodes_parent[neighbour] = cur_node
+        if cur_node == end:
+            flag = False
 
     # don't need path, only need nodes in the path
     path = []
@@ -65,6 +69,7 @@ def gcd(a, b):
         return b
     else:
         return gcd(b % a, a)
+
 
 # cache all answers and print later
 # for u in range(len(nodes)):
@@ -83,30 +88,30 @@ def gcd(a, b):
 #
 #         coprime_paths[str(node_u) + str(node_v)] = coprime_count
 
-# for a0 in range(q):
-#     u, v = input().strip().split(' ')
-#     u, v = [int(u), int(v)]
-#
-#     if u == v:
-#         print("0")
-#         continue
-#
-#     if (str(v) + str(u)) in coprime_paths:
-#         print(coprime_paths[str(v) + str(u)])
-#         continue
-#     if (str(u) + str(v)) in coprime_paths:
-#         print(coprime_paths[str(u) + str(v)])
-#         continue
-#
-#     path_nodes = get_path(u - 1, v - 1)
-#     coprime_count = 0
-#     for i in range(len(path_nodes)):
-#         for j in range(i + 1, len(path_nodes)):
-#             # get gcd
-#             a = nodes[path_nodes[i] - 1]
-#             b = nodes[path_nodes[j] - 1]
-#             if gcd(a, b) == 1:
-#                 coprime_count += 1
-#     coprime_paths[str(u) + str(v)] = coprime_count
-#
-#     print(coprime_count)
+for a0 in range(q):
+    u, v = input().strip().split(' ')
+    u, v = [int(u), int(v)]
+
+    if u == v:
+        print("0")
+        continue
+
+    if (str(v) + str(u)) in coprime_paths:
+        print(coprime_paths[str(v) + str(u)])
+        continue
+    if (str(u) + str(v)) in coprime_paths:
+        print(coprime_paths[str(u) + str(v)])
+        continue
+
+    path_nodes = get_path(u - 1, v - 1)
+    coprime_count = 0
+    for i in range(len(path_nodes)):
+        for j in range(i + 1, len(path_nodes)):
+            # get gcd
+            a = nodes[path_nodes[i] - 1]
+            b = nodes[path_nodes[j] - 1]
+            if gcd(a, b) == 1:
+                coprime_count += 1
+    coprime_paths[str(u) + str(v)] = coprime_count
+
+    print(coprime_count)
